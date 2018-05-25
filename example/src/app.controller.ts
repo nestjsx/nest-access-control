@@ -1,5 +1,5 @@
 import { Get, Controller, UseGuards } from '@nestjs/common';
-import { UserRoles, UseRoles, ACGuard } from '../../src';
+import { UserRoles, UseRoles, ACGuard } from 'nest-access-control';
 import { AppService } from './app.service';
 import { AuthGuard } from './auth.guard';
 import { AppRoles } from 'app.roles';
