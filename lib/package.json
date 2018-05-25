@@ -1,0 +1,44 @@
+{
+  "name": "nest-access-control",
+  "version": "1.0.0",
+  "description": "Access Control Module For Nestjs Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --notify --config=jest.json",
+    "test:watch": "jest --watch --config=jest.json",
+    "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage",
+    "build": "gulp build && gulp move",
+    "build:lib": "gulp build --dist lib && cp -rf package.json lib && cp -rf README.md lib",
+    "npm:publish": "cd lib && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shekohex/nest-access-control.git"
+  },
+  "keywords": ["nestjs", "access", "roles", "premissions", "nestjs modules", "addons"],
+  "author": "Shady Khalifa <shekohex@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@nestjs/common": "^5.0.0",
+    "@nestjs/core": "^5.0.0",
+    "@types/jest": "^22.2.3",
+    "@types/node": "^10.1.2",
+    "coveralls": "^3.0.1",
+    "gulp": "^4.0.0",
+    "gulp-sequence": "^1.0.0",
+    "gulp-typescript": "^4.0.2",
+    "jest": "^22.4.4",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^6.0.0",
+    "ts-jest": "^22.4.6",
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
+  },
+  "bugs": {
+    "url": "https://github.com/shekohex/nest-access-control/issues"
+  },
+  "homepage": "https://github.com/shekohex/nest-access-control#readme",
+  "dependencies": {
+    "accesscontrol": "^2.2.1"
+  }
+}
