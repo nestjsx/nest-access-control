@@ -1,6 +1,12 @@
 # Nest Access Control
 
-> TODO: Add some bages
+
+![MIT](https://img.shields.io/cocoapods/l/AFNetworking.svg?style=flat-square)
+[![npm version](https://badge.fury.io/js/nest-access-control.svg)](https://badge.fury.io/js/nest-access-control)
+![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
 
 #### A helper Module for building a Role and Attribute based Access Control System for Nestjs
 
