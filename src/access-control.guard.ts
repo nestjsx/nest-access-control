@@ -5,18 +5,18 @@ import { InjectRolesBuilder } from './decorators/inject-roles-builder.decorator'
 import { RolesBuilder } from './roles-builder.class';
 
 @Injectable()
-export class ACGuard implements CanActivate {
+export class ACGuard<User extends any = any> implements CanActivate {
   constructor(
     private readonly reflector: Reflector,
     @InjectRolesBuilder() private readonly roleBuilder: RolesBuilder,
   ) {}
 
-  async getUser(context: ExecutionContext): Promise<any> {
+  async getUser(context: ExecutionContext): Promise<User> {
     const request = context.switchToHttp().getRequest();
     return request.user;
   }
 
-  async getUserRoles(context: ExecutionContext): Promise<any> {
+  async getUserRoles(context: ExecutionContext): Promise<string | string[]> {
     const user = await this.getUser(context);
     if (!user) throw new UnauthorizedException();
     return user.roles
