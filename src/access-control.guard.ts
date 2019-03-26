@@ -1,5 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { IQueryInfo } from 'accesscontrol';
 import { Role } from './role.interface';
 import { InjectRolesBuilder } from './decorators/inject-roles-builder.decorator';
 import { RolesBuilder } from './roles-builder.class';
@@ -30,8 +31,9 @@ export class ACGuard<User extends any = any> implements CanActivate {
     
     const userRoles = await this.getUserRoles(context);
     const hasRoles = roles.every(role => {
-      (role as any).role = userRoles;
-      const permission = this.roleBuilder.permission(role);
+      const queryInfo: IQueryInfo = role;
+      queryInfo.role = userRoles;
+      const permission = this.roleBuilder.permission(queryInfo);
       return permission.granted;
     });
     return hasRoles;
