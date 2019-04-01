@@ -12,23 +12,23 @@ export class ACGuard<User extends any = any> implements CanActivate {
     @InjectRolesBuilder() private readonly roleBuilder: RolesBuilder,
   ) {}
 
-  async getUser(context: ExecutionContext): Promise<User> {
+  private async getUser(context: ExecutionContext): Promise<User> {
     const request = context.switchToHttp().getRequest();
     return request.user;
   }
 
-  async getUserRoles(context: ExecutionContext): Promise<string | string[]> {
+  private async getUserRoles(context: ExecutionContext): Promise<string | string[]> {
     const user = await this.getUser(context);
     if (!user) throw new UnauthorizedException();
-    return user.roles
+    return user.roles;
   }
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  public async canActivate(context: ExecutionContext): Promise<boolean> {
     const roles = this.reflector.get<Role[]>('roles', context.getHandler());
     if (!roles) {
       return true;
     }
-    
+
     const userRoles = await this.getUserRoles(context);
     const hasRoles = roles.every(role => {
       const queryInfo: IQueryInfo = role;
