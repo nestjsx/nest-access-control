@@ -1,6 +1,12 @@
 # Nest Access Control
 
-> TODO: Add some bages
+
+![MIT](https://img.shields.io/cocoapods/l/AFNetworking.svg?style=flat-square)
+[![npm version](https://badge.fury.io/js/nest-access-control.svg)](https://badge.fury.io/js/nest-access-control)
+![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
 
 #### A helper Module for building a Role and Attribute based Access Control System for Nestjs
 
@@ -98,7 +104,7 @@ until now everything is fine, but let's make our application,
 assume that we have list of video names, user can - _according to our roles_ - `create:own` new video, and `read:any` video, so let's build it
 
 ```ts
-// app.service.ts
+// app.controller.ts
 ...
 @Controller()
 export class AppController  {
@@ -127,7 +133,7 @@ First we introduced two new decorators, actually they are three, but let's see w
   > \*note: for those who are asking what ACGuard stands for, it of course stands for Access Control Guard :smile:
 
 - `UserRoles(<prop>)`: if you want to get access to the user roles directly, maybe you want to check it's roles manually instead of `ACGuard` doing it for you, then that decorator what you are looking for.
-  the decorator it really simple, it just return the `req.user.roles` value from the `request` object, but wait, what if the user roles isn't exist in `prop: role` , we know that you will ask this question, so that You can pass an optional property key to the decorator to get it from the user object e.g `@UserRoles('premissions')` will return the `req.user.premissions` instead.
+  the decorator it really simple, it just return the `req.user.roles` value from the `request` object, but wait, what if the user roles isn't exist in `prop: role` , we know that you will ask this question, so that You can pass an optional property key to the decorator to get it from the user object e.g `@UserRoles('permissions')` will return the `req.user.permissions` instead.
 
 - `@InjectRolesBuilder()`: If you hate the `ACGuard` - _imo it's a good guard_ - and want to build your own Guard instead, you will likely need to access to the underlying `RolesBuilder` Object , then that decorator for you, it will inject the `Roles` you have defined before, i.e the object passed to the `AccessControlModule.forRoles(roles)`.
 
