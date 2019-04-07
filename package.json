@@ -1,6 +1,6 @@
 {
   "name": "nest-access-control",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Access Control Module For Nestjs Framework",
   "main": "index.js",
   "scripts": {
@@ -26,8 +26,8 @@
   "author": "Shady Khalifa <shekohex@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@nestjs/common": "^5.0.0",
-    "@nestjs/core": "^5.0.0",
+    "@nestjs/common": "^6.0.1",
+    "@nestjs/core": "^6.0.1",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.2",
     "coveralls": "^3.0.1",
