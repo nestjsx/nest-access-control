@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.1] - 2019-04-01
+
+### Added
+
+- Abstract AcGuard's user and role handling [#7](https://github.com/nestjs-community/nest-access-control/pull/7)
+
 ## [1.0.0] - 2018-05-25
 
 ### Added
 
-* Greenkeeper badge
-* README
-* add continuous integration "Travis CI"
-* Build status badge
+- Greenkeeper badge
+- README
+- add continuous integration "Travis CI"
+- Build status badge

@@ -43,18 +43,5 @@
     "webpack": "^4.2.0",
     "webpack-cli": "^2.0.13",
     "webpack-node-externals": "^1.6.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage"
   }
 }

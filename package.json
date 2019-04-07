@@ -15,7 +15,14 @@
     "type": "git",
     "url": "git+https://github.com/shekohex/nest-access-control.git"
   },
-  "keywords": ["nestjs", "access", "roles", "premissions", "nestjs modules", "addons"],
+  "keywords": [
+    "nestjs",
+    "access",
+    "roles",
+    "premissions",
+    "nestjs modules",
+    "addons"
+  ],
   "author": "Shady Khalifa <shekohex@gmail.com>",
   "license": "MIT",
   "devDependencies": {
