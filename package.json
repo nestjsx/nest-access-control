@@ -39,7 +39,7 @@
     "rxjs": "^6.0.0",
     "ts-jest": "^22.4.6",
     "ts-node": "^6.0.3",
-    "typescript": "^2.8.3"
+    "typescript": "^3.2"
   },
   "bugs": {
     "url": "https://github.com/shekohex/nest-access-control/issues"
