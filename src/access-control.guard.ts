@@ -12,12 +12,12 @@ export class ACGuard<User extends any = any> implements CanActivate {
     @InjectRolesBuilder() private readonly roleBuilder: RolesBuilder,
   ) {}
 
-  private async getUser(context: ExecutionContext): Promise<User> {
+  protected async getUser(context: ExecutionContext): Promise<User> {
     const request = context.switchToHttp().getRequest();
     return request.user;
   }
 
-  private async getUserRoles(context: ExecutionContext): Promise<string | string[]> {
+  protected async getUserRoles(context: ExecutionContext): Promise<string | string[]> {
     const user = await this.getUser(context);
     if (!user) throw new UnauthorizedException();
     return user.roles;
