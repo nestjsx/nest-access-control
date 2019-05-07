@@ -1,6 +1,7 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
 import { RolesBuilder } from './roles-builder.class';
 import { ROLES_BUILDER_TOKEN } from './constants';
+
 @Global()
 @Module({})
 export class AccessControlModule {
@@ -28,7 +29,7 @@ export class AccessControlModule {
   }
 
   public static forRootAsync(options: {
-    inject: Provider[],
+    inject?: Provider[],
     useFactory: (...args: any) => RolesBuilder,
   }): DynamicModule {
 
