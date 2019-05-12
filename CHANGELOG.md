@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.1] - 2019-04-10
+
+### Added
+
+- `AccessControlModule#forRootAsync` method for loading `RolesBuilder` asynchronously. (from database for example.)
+
 ## [2.0.0] - 2019-04-10
 
 ## Updated [Breacking Change]
+
 - Now we are using Nestjs V6
 
 ## [1.0.1] - 2019-04-01

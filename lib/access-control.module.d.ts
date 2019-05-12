@@ -1,4 +1,4 @@
-import { DynamicModule } from '@nestjs/common';
+import { DynamicModule, Provider } from '@nestjs/common';
 import { RolesBuilder } from './roles-builder.class';
 export declare class AccessControlModule {
     /**
@@ -7,4 +7,8 @@ export declare class AccessControlModule {
      * definitions. See the structure of this object in the examples.
      */
     static forRoles(roles: RolesBuilder): DynamicModule;
+    static forRootAsync(options: {
+        inject?: Provider[];
+        useFactory: (...args: any) => RolesBuilder;
+    }): DynamicModule;
 }
