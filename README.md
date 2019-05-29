@@ -100,6 +100,23 @@ import { roles } from './app.roles';
 export class AppModule {}
 ```
 
+3.  optionaly, you can setup the interceptor that will filter the attributes defined in your roles
+
+```ts
+// main.ts
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { AccessControlInterceptor } from 'nest-access-control';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalInterceptors(new AccessControlInterceptor());
+  await app.listen(3000);
+}
+bootstrap();
+```
+
 until now everything is fine, but let's make our application,
 assume that we have list of video names, user can - _according to our roles_ - `create:own` new video, and `read:any` video, so let's build it
 
