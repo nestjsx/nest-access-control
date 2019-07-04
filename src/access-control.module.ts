@@ -30,7 +30,7 @@ export class AccessControlModule {
 
   public static forRootAsync(options: {
     inject?: Provider[],
-    useFactory: (...args: any) => RolesBuilder,
+    useFactory: (...args: any) => RolesBuilder | Promise<RolesBuilder>,
   }): DynamicModule {
 
     const provider = {
