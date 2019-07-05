@@ -162,7 +162,7 @@ you are welcome with this project for contributing, just make a PR
 
 * **Shady Khalifa** - _Initial work_
 
-See also the list of [contributors](https://github.com/shekohex/nest-access-control/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/nestjsx/nest-access-control/contributors) who participated in this project.
 
 ## License
 
