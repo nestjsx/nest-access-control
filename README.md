@@ -132,10 +132,10 @@ First we introduced two new decorators, actually they are three, but let's see w
   for more information about the structure of roles see `roles.interface.ts` file or read the original [documentation](https://onury.io/accesscontrol/) form `accesscontrol` library [here](https://onury.io/accesscontrol/?api=ac#AccessControl~IQueryInfo) .
   > \*note: for those who are asking what ACGuard stands for, it of course stands for Access Control Guard :smile:
 
-- `UserRoles(<prop>)`: if you want to get access to the user roles directly, maybe you want to check it's roles manually instead of `ACGuard` doing it for you, then that decorator what you are looking for.
-  the decorator it really simple, it just return the `req.user.roles` value from the `request` object, but wait, what if the user roles isn't exist in `prop: role` , we know that you will ask this question, so that You can pass an optional property key to the decorator to get it from the user object e.g `@UserRoles('permissions')` will return the `req.user.permissions` instead.
+- `UserRoles(<prop>)`: if you want to get access to the user roles directly, maybe you want to check it's roles manually instead of `ACGuard` doing it for you, then that decorator is what you are looking for.
+  the decorator it really simple, it just return the `req.user.roles` value from the `request` object, but wait, what if the user roles isn't exist in `prop: role`, we know that you will ask this question, so that You can pass an optional property key to the decorator to get it from the user object e.g `@UserRoles('permissions')` will return the `req.user.permissions` instead.
 
-- `@InjectRolesBuilder()`: If you hate the `ACGuard` - _imo it's a good guard_ - and want to build your own Guard instead, you will likely need to access to the underlying `RolesBuilder` Object , then that decorator for you, it will inject the `Roles` you have defined before, i.e the object passed to the `AccessControlModule.forRoles(roles)`.
+- `@InjectRolesBuilder()`: If you hate the `ACGuard` - _imo it's a good guard_ - and want to build your own Guard instead, you will likely need to access to the underlying `RolesBuilder` Object , then that decorator is for you, it will inject the `Roles` you have defined before, i.e the object passed to the `AccessControlModule.forRoles(roles)`.
 
 4.  are you still there ? Ok, that's it, you can go and run the application now, but wait, did someone asked for the `AuthGuard` ?
     Ok let's discuss the **LIMITATIONS**
