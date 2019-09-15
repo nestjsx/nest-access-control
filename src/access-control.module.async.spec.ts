@@ -4,6 +4,7 @@ import { RolesBuilder } from './roles-builder.class';
 import {ROLES_BUILDER_TOKEN} from './constants';
 import { delay } from 'rxjs/operators';
 import { GrantsController } from './grants.controller';
+import { ACOptions } from './ac-options.interface';
 
 describe('forRootAsync', () => {
   it('Can instance with provider method', async () => {
@@ -41,24 +42,40 @@ describe('forRootAsync', () => {
 });
 
 describe('forRoles', () => {
-  it('Expose <serveGrants> endpoint when a value is provided', async () => {
+  it('Expose <grantsEndpoint> when options is provided', async () => {
 
     const roles: RolesBuilder = new RolesBuilder();
-    const serveGrants = 'grants';
+    const options: ACOptions = { grantsEndpoint: 'grants'};
 
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        AccessControlModule.forRoles(roles, serveGrants),
+        AccessControlModule.forRoles(roles, options),
       ],
     }).compile();
 
     const controller = module.get<GrantsController>(GrantsController);
 
     expect(controller).toBeDefined();
-    expect(Reflect.getMetadata('path', GrantsController)).toBe(serveGrants);
+    expect(Reflect.getMetadata('path', GrantsController)).toBe(options.grantsEndpoint);
   });
 
-  it('Do not expose <serveGrants> endpoint when a value is not provided', async () => {
+  it('Do not expose <grantsEndpoint> when options with no <grantsEndpoint> provided', async () => {
+
+    const roles: RolesBuilder = new RolesBuilder();
+    const options: ACOptions = {};
+
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        AccessControlModule.forRoles(roles, options),
+      ],
+    }).compile();
+
+    expect(() => {
+      module.get<GrantsController>(GrantsController);
+    }).toThrowError();
+  });
+
+  it('Do not expose <grantsEndpoint> when options is not provided', async () => {
 
     const roles: RolesBuilder = new RolesBuilder();
 
