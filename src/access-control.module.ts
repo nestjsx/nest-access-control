@@ -11,8 +11,8 @@ export class AccessControlModule {
   /**
    * Register a pre-defined roles
    * @param {RolesBuilder} roles  A list containing the access grant
-   * @param {ACOptions} options  A configurable options
    * definitions. See the structure of this object in the examples.
+   * @param {ACOptions} options  A configurable options
    */
   public static forRoles(roles: RolesBuilder, options?: ACOptions): DynamicModule {
 
