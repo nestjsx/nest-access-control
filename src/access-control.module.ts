@@ -1,4 +1,4 @@
-import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
+import { Module, DynamicModule, Global, Type, ForwardReference, Abstract } from '@nestjs/common';
 import { PATH_METADATA } from '@nestjs/common/constants';
 import { RolesBuilder } from './roles-builder.class';
 import { ROLES_BUILDER_TOKEN } from './constants';
@@ -41,7 +41,8 @@ export class AccessControlModule {
   }
 
   public static forRootAsync(options: {
-    inject?: Provider<any>[];
+    imports?: Array<Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference>;
+    inject?: Array<Type<any> | string | symbol | Abstract<any> | Function>;
     useFactory: (...args: any) => RolesBuilder | Promise<RolesBuilder>;
   }): DynamicModule {
     const provider = {
@@ -51,9 +52,10 @@ export class AccessControlModule {
     };
 
     return {
+      imports: [...(options.imports || [])],
       module: AccessControlModule,
-      providers: [...provider.inject],
-      exports: [...provider.inject],
+      providers: [provider],
+      exports: [provider],
     };
   }
 }
