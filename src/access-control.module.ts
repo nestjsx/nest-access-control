@@ -1,4 +1,4 @@
-import { Module, DynamicModule, Global, Abstract, Type } from '@nestjs/common';
+import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
 import { PATH_METADATA } from '@nestjs/common/constants';
 import { RolesBuilder } from './roles-builder.class';
 import { ROLES_BUILDER_TOKEN } from './constants';
@@ -15,21 +15,16 @@ export class AccessControlModule {
    * definitions. See the structure of this object in the examples.
    */
   public static forRoles(roles: RolesBuilder, options?: ACOptions): DynamicModule {
-
     let controllers = [];
 
     if (options) {
       Reflect.defineMetadata(PATH_METADATA, options.grantsEndpoint, GrantsController);
-      controllers = [
-        ...options.grantsEndpoint ? [GrantsController] : [],
-      ];
+      controllers = [...(options.grantsEndpoint ? [GrantsController] : [])];
     }
 
     return {
       module: AccessControlModule,
-      controllers: [
-        ...controllers,
-      ],
+      controllers: [...controllers],
       providers: [
         {
           provide: ROLES_BUILDER_TOKEN,
@@ -46,10 +41,9 @@ export class AccessControlModule {
   }
 
   public static forRootAsync(options: {
-    inject?: Array<Type<any> | string | symbol | Abstract<any> | Function>,
-    useFactory: (...args: any) => RolesBuilder | Promise<RolesBuilder>,
+    inject?: Provider<any>[];
+    useFactory: (...args: any) => RolesBuilder | Promise<RolesBuilder>;
   }): DynamicModule {
-
     const provider = {
       provide: ROLES_BUILDER_TOKEN,
       useFactory: options.useFactory,
@@ -58,12 +52,8 @@ export class AccessControlModule {
 
     return {
       module: AccessControlModule,
-      providers: [
-        provider,
-      ],
-      exports: [
-        provider,
-      ],
+      providers: [...provider.inject],
+      exports: [...provider.inject],
     };
   }
 }
