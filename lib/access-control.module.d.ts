@@ -13,5 +13,6 @@ export declare class AccessControlModule {
         imports?: Array<Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference>;
         inject?: Array<Type<any> | string | symbol | Abstract<any> | Function>;
         useFactory: (...args: any) => RolesBuilder | Promise<RolesBuilder>;
+        grantsEndpoint?: string;
     }): DynamicModule;
 }

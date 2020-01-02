@@ -49,6 +49,7 @@ export class AccessControlModule {
     imports?: Array<Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference>;
     inject?: Array<Type<any> | string | symbol | Abstract<any> | Function>;
     useFactory: (...args: any) => RolesBuilder | Promise<RolesBuilder>;
+    grantsEndpoint?: string;
   }): DynamicModule {
 
     const provider = {
@@ -57,8 +58,20 @@ export class AccessControlModule {
       inject: options.inject || [],
     };
 
+    let controllers = [];
+
+    if (options && options.grantsEndpoint) {
+      Reflect.defineMetadata(PATH_METADATA, options.grantsEndpoint, GrantsController);
+      controllers = [
+        ...options.grantsEndpoint ? [GrantsController] : [],
+      ];
+    }
+
     return {
       imports: [...(options.imports || [])],
+      controllers: [
+        ...controllers,
+      ],
       module: AccessControlModule,
       providers: [
         provider,
