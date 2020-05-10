@@ -1,4 +1,4 @@
-import { Module, DynamicModule, Global, Type, ForwardReference, Abstract } from '@nestjs/common';
+import { Module, DynamicModule, Global, Abstract, Type, ForwardReference } from '@nestjs/common';
 import { PATH_METADATA } from '@nestjs/common/constants';
 import { RolesBuilder } from './roles-builder.class';
 import { ROLES_BUILDER_TOKEN } from './constants';
@@ -44,6 +44,7 @@ export class AccessControlModule {
     imports?: Array<Type<any> | DynamicModule | Promise<DynamicModule> | ForwardReference>;
     inject?: Array<Type<any> | string | symbol | Abstract<any> | Function>;
     useFactory: (...args: any) => RolesBuilder | Promise<RolesBuilder>;
+    grantsEndpoint?: string;
   }): DynamicModule {
     const provider = {
       provide: ROLES_BUILDER_TOKEN,
@@ -51,8 +52,20 @@ export class AccessControlModule {
       inject: options.inject || [],
     };
 
+    let controllers = [];
+
+    if (options && options.grantsEndpoint) {
+      Reflect.defineMetadata(PATH_METADATA, options.grantsEndpoint, GrantsController);
+      controllers = [
+        ...options.grantsEndpoint ? [GrantsController] : [],
+      ];
+    }
+
     return {
       imports: [...(options.imports || [])],
+      controllers: [
+        ...controllers,
+      ],
       module: AccessControlModule,
       providers: [provider],
       exports: [provider],
