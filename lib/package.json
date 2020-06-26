@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shekohex/nest-access-control.git"
+    "url": "git+https://github.com/nestjsx/nest-access-control.git"
   },
   "keywords": [
     "nestjs",
@@ -43,9 +43,9 @@
     "typescript": "^3.2"
   },
   "bugs": {
-    "url": "https://github.com/shekohex/nest-access-control/issues"
+    "url": "https://github.com/nestjsx/nest-access-control/issues"
   },
-  "homepage": "https://github.com/shekohex/nest-access-control#readme",
+  "homepage": "https://github.com/nestjsx/nest-access-control#readme",
   "dependencies": {
     "accesscontrol": "^2.2.1"
   }

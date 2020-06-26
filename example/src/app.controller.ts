@@ -1,12 +1,12 @@
-import { Get, Controller, UseGuards } from '@nestjs/common';
-import { UserRoles, UseRoles, ACGuard } from 'nest-access-control';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthGuard } from './auth.guard';
-import { AppRoles } from 'app.roles';
+import { ACGuard, UseRoles, UserRoles } from 'nest-access-control';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
   @UseGuards(AuthGuard, ACGuard)
   @UseRoles({
     resource: 'video',
