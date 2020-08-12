@@ -12,7 +12,7 @@ export class AccessControlModule {
    * Register a pre-defined roles
    * @param {RolesBuilder} roles  A list containing the access grant
    * definitions. See the structure of this object in the examples.
-   * @param {ACOptions} options  A configurable options
+   * @param {ACOptions} options  A list of configurable options (currently just one)
    */
   public static forRoles(roles: RolesBuilder, options?: ACOptions): DynamicModule {
     let controllers = [];
