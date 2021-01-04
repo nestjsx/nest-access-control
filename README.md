@@ -86,7 +86,7 @@ We need to build a Video service so users can share there videos with others, bu
 
 2.  Next let's use `AccessControlModule` in our Root module:
 
-    ```ts
+```ts
     // app.module.ts
 
     import { roles } from './app.roles';
@@ -101,8 +101,9 @@ We need to build a Video service so users can share there videos with others, bu
 
     Until now everything is fine, but let's make our application,
     assume that we have list of video names, user can - _according to our roles_ - `create:own` new video, and `read:any` video, so let's build it:
+```
 
-    ```ts
+```ts
     // app.controller.ts
     ...
     @Controller()
@@ -119,9 +120,47 @@ We need to build a Video service so users can share there videos with others, bu
         return this.appService.root(userRoles);
       }
     }
-    ```
+```
 
-    So let's discuss what's going on!
+### ForRootAsync 
+
+Injecting providers for a RoleBuilder Factory (using a database to populate roles)
+
+```ts
+@Injectable()
+class RoleProvider {
+
+  getRoles(): Promise<string[]> {
+    return Promise.resolve([
+      'my-custom-role',
+    ]);
+  }
+}
+
+@Module({
+  providers: [RoleProvider],
+  exports: [RoleProvider],
+})
+class RoleModule {
+
+}
+
+@Module({
+  imports: [
+    AccessControlModule.forRootAsync({
+      imports: [TestModule],
+      inject: [RoleService],
+      useFactory: async (roleService: RoleService): Promise<RolesBuilder> => {
+        return new RolesBuilder(await roleService.getRoles());
+      },
+    }),
+  ],
+})
+export class AccessModule {}
+```
+Notice the use of `imports` in the forRootAsync method. This will allow you to inject exported providers from the imported module. Injecting providers, provided in the same module as the imported AccessControlModule will result in the provider not being found. This is because the module is created before the providers.
+
+So let's discuss what's going on!
 
 First we introduced two new decorators, actually they are three, but let's see what they can do:
 
