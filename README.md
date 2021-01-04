@@ -27,7 +27,7 @@ here is some of it's Core Features
 - Brutally **tested**.
 - TypeScript support.
 
-#### What this Module Provide ?
+#### What does this Module Provide?
 
 In this module you will have all these features out of the box, but in nest-ish way.
 
@@ -73,13 +73,13 @@ We need to build a Video service so users can share there videos with others, bu
 
     roles
       .grant(AppRoles.USER_CREATE_ANY_VIDEO) // define new or modify existing role. also takes an array.
-      .createOwn('video') // equivalent to .createOwn('video', ['*'])
-      .deleteOwn('video')
-      .readAny('video')
+        .createOwn('video') // equivalent to .createOwn('video', ['*'])
+        .deleteOwn('video')
+        .readAny('video')
       .grant(AppRoles.ADMIN_UPDATE_OWN_VIDEO) // switch to another role without breaking the chain
-      .extend(AppRoles.USER_CREATE_ANY_VIDEO) // inherit role capabilities. also takes an array
-      .updateAny('video', ['title']) // explicitly defined attributes
-      .deleteAny('video');
+        .extend(AppRoles.USER_CREATE_ANY_VIDEO) // inherit role capabilities. also takes an array
+        .updateAny('video', ['title']) // explicitly defined attributes
+        .deleteAny('video');
     ```
 
 > Pro Tip :+1: : Keep all roles organized and in one file e,g: `app.roles.ts`
@@ -121,29 +121,29 @@ We need to build a Video service so users can share there videos with others, bu
     }
     ```
 
-    So let's discuss what's going on !
+    So let's discuss what's going on!
 
 First we introduced two new decorators, actually they are three, but let's see what they can do:
 
 - `@UseRoles({ ... })`: this the most used decorator, it define what roles should user have to access this route.
   It may take one or more role, but keep in mind that all roles **must** be satisfied.
   The structure of the role is really simple, for example, here we define what resources we have, and the **ACGuard\*** - _Damn, it's a good name for a guard :joy:_ - will check for the user roles, then if the user roles have the permissions to access this resource the guard will return `true`, else it will throw a `ForbiddenException`.
-  For more information about the structure of roles see `roles.interface.ts` file or read the original [documentation](https://onury.io/accesscontrol/) form `accesscontrol` library [here](https://onury.io/accesscontrol/?api=ac#AccessControl~IQueryInfo) .
+  For more information about the structure of roles see `roles.interface.ts` file or read the original [documentation](https://onury.io/accesscontrol/) form `accesscontrol` library [here](https://onury.io/accesscontrol/?api=ac#AccessControl~IQueryInfo).
   > \*note: for those who are asking what ACGuard stands for, it of course stands for Access Control Guard :smile:
 
 * `UserRoles(<prop>)`: if you want to get access to the user roles directly, maybe you want to check it's roles manually instead of `ACGuard` doing it for you, then that decorator is what you are looking for.
-  The decorator is really simple, it just return the `req.user.roles` value from the `request` object, but wait, what if the user roles isn't exist in `prop: role`, we know that you will ask this question, so that You can pass an optional property key to the decorator to get it from the user object e.g `@UserRoles('permissions')` will return the `req.user.permissions` instead.
+  The decorator is really simple, it just return the `req.user.roles` value from the `request` object, but wait, what if the user roles doesn't exist in `prop: role`?  We knew that you would ask this question, so you can pass an optional property key to the decorator to get it from the user object e.g `@UserRoles('permissions')` will return the `req.user.permissions` instead.
 
-* `@InjectRolesBuilder()`: if you hate the `ACGuard` - _imo it's a good guard_ - and want to build your own Guard instead, you will likely need to access to the underlying `RolesBuilder` Object , then that decorator is for you, it will inject the `Roles` you have defined before, i.e the object passed to the `AccessControlModule.forRoles(roles)`.
+* `@InjectRolesBuilder()`: if you hate the `ACGuard` - _imo it's a good guard_ - and want to build your own Guard instead, you will likely need to access to the underlying `RolesBuilder` Object , then that decorator is for you; it will inject the `Roles` you have defined before, i.e the object passed to the `AccessControlModule.forRoles(roles)`.
 
-4.  Are you still there ? Ok, that's it, you can go and run the application now, but wait, did someone asked for the `AuthGuard` ?
+4.  Are you still there? Ok, that's it, you can go and run the application now, but wait, did someone asked for the `AuthGuard`?
     Ok let's discuss the **LIMITATIONS**.
 
 #### Limitations
 
 First of all, this module built with some assumptions
 
-1.  The user object will be exist in `req.user`
+1.  The user object will exist in `req.user`
 2.  It is up to you to build your own `AuthGuard` that will attach the `user` object to the `req` object, [read more](https://docs.nestjs.com/guards)
 3.  The `AuthGuard` must be registered before roles guard, in this case it's `ACGuard`, and of course you can combine the `AuthGuard` and `ACGuard` in one guard, and use it everywhere.
 
