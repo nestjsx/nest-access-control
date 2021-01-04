@@ -5,6 +5,7 @@ import {ROLES_BUILDER_TOKEN} from './constants';
 import { delay } from 'rxjs/operators';
 import { GrantsController } from './grants.controller';
 import { ACOptions } from './ac-options.interface';
+import { Injectable, Module } from '@nestjs/common';
 
 describe('forRootAsync', () => {
   it('Can instance with provider method', async () => {
@@ -29,6 +30,38 @@ describe('forRootAsync', () => {
         AccessControlModule.forRootAsync({
           useFactory: async (): Promise<RolesBuilder> => {
             await delay(100);
+            return new RolesBuilder();
+          },
+        }),
+      ],
+    }).compile();
+
+    const roles = module.get(ROLES_BUILDER_TOKEN);
+
+    expect(roles).toBeInstanceOf(RolesBuilder);
+  });
+
+  it('Can inject a provider', async () => {
+
+    @Injectable()
+    class TestProvider {
+    }
+
+    @Module({
+      providers: [TestProvider],
+      exports: [TestProvider],
+    })
+    class TestModule {
+
+    }
+
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        AccessControlModule.forRootAsync({
+          imports: [TestModule],
+          inject: [TestProvider],
+          useFactory: (test: TestProvider): RolesBuilder => {
+            expect(test).toBeInstanceOf(TestProvider);
             return new RolesBuilder();
           },
         }),
