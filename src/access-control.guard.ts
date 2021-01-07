@@ -30,7 +30,7 @@ export class ACGuard<User extends any = any> implements CanActivate {
     }
 
     const userRoles = await this.getUserRoles(context);
-    const hasRoles = roles.every(role => {
+    const hasRoles = roles.every((role) => {
       const queryInfo: IQueryInfo = role;
       queryInfo.role = userRoles;
       const permission = this.roleBuilder.permission(queryInfo);

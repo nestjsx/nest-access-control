@@ -1,7 +1,7 @@
-import {AccessControlModule} from './access-control.module';
-import {Test, TestingModule} from '@nestjs/testing';
+import { AccessControlModule } from './access-control.module';
+import { Test, TestingModule } from '@nestjs/testing';
 import { RolesBuilder } from './roles-builder.class';
-import {ROLES_BUILDER_TOKEN} from './constants';
+import { ROLES_BUILDER_TOKEN } from './constants';
 import { delay } from 'rxjs/operators';
 import { GrantsController } from './grants.controller';
 import { ACOptions } from './ac-options.interface';
@@ -9,7 +9,6 @@ import { Injectable, Module } from '@nestjs/common';
 
 describe('forRootAsync', () => {
   it('Can instance with provider method', async () => {
-
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         AccessControlModule.forRootAsync({
@@ -24,7 +23,6 @@ describe('forRootAsync', () => {
   });
 
   it('Can instance with asnyc provider method', async () => {
-
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         AccessControlModule.forRootAsync({
@@ -42,18 +40,14 @@ describe('forRootAsync', () => {
   });
 
   it('Can inject a provider', async () => {
-
     @Injectable()
-    class TestProvider {
-    }
+    class TestProvider {}
 
     @Module({
       providers: [TestProvider],
       exports: [TestProvider],
     })
-    class TestModule {
-
-    }
+    class TestModule {}
 
     const module: TestingModule = await Test.createTestingModule({
       imports: [
@@ -76,14 +70,11 @@ describe('forRootAsync', () => {
 
 describe('forRoles', () => {
   it('Expose <grantsEndpoint> when options is provided', async () => {
-
     const roles: RolesBuilder = new RolesBuilder();
-    const options: ACOptions = { grantsEndpoint: 'grants'};
+    const options: ACOptions = { grantsEndpoint: 'grants' };
 
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        AccessControlModule.forRoles(roles, options),
-      ],
+      imports: [AccessControlModule.forRoles(roles, options)],
     }).compile();
 
     const controller = module.get<GrantsController>(GrantsController);
@@ -93,14 +84,11 @@ describe('forRoles', () => {
   });
 
   it('Do not expose <grantsEndpoint> when options with no <grantsEndpoint> provided', async () => {
-
     const roles: RolesBuilder = new RolesBuilder();
     const options: ACOptions = {};
 
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        AccessControlModule.forRoles(roles, options),
-      ],
+      imports: [AccessControlModule.forRoles(roles, options)],
     }).compile();
 
     expect(() => {
@@ -109,13 +97,10 @@ describe('forRoles', () => {
   });
 
   it('Do not expose <grantsEndpoint> when options is not provided', async () => {
-
     const roles: RolesBuilder = new RolesBuilder();
 
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        AccessControlModule.forRoles(roles),
-      ],
+      imports: [AccessControlModule.forRoles(roles)],
     }).compile();
 
     expect(() => {

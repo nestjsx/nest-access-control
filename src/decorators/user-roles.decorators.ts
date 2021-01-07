@@ -6,8 +6,7 @@ import { createParamDecorator, ExecutionContext } from '@nestjs/common';
  * You can pass an optional property key to the decorator to get it from the user object
  * e.g `@UserRoles('permissions')` will return the `req.user.permissions` instead.
  */
-export const UserRoles = createParamDecorator((data: string,  ctx: ExecutionContext) => {
-
+export const UserRoles = createParamDecorator((data: string, ctx: ExecutionContext) => {
   const request = ctx.switchToHttp().getRequest();
   return data ? request.user[data] : request.user.roles;
 });

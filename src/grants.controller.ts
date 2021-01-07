@@ -4,10 +4,7 @@ import { RolesBuilder } from './roles-builder.class';
 
 @Controller()
 export class GrantsController {
-
-  constructor(
-    @InjectRolesBuilder() private readonly roleBuilder: RolesBuilder,
-  ) {}
+  constructor(@InjectRolesBuilder() private readonly roleBuilder: RolesBuilder) {}
 
   @Get()
   public getGrants() {
