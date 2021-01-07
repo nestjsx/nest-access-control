@@ -5,18 +5,14 @@ import { RolesBuilder } from './roles-builder.class';
 import { ROLES_BUILDER_TOKEN } from './constants';
 
 describe('Grants Controller #getGrants', () => {
-
   let controller: GrantsController;
   const roles: RolesBuilder = new RolesBuilder();
 
   beforeEach(async () => {
-
     Reflect.defineMetadata(PATH_METADATA, 'grants', GrantsController);
 
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [
-        GrantsController,
-      ],
+      controllers: [GrantsController],
       providers: [
         {
           provide: ROLES_BUILDER_TOKEN,

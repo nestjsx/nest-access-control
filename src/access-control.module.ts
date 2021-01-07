@@ -56,16 +56,12 @@ export class AccessControlModule {
 
     if (options && options.grantsEndpoint) {
       Reflect.defineMetadata(PATH_METADATA, options.grantsEndpoint, GrantsController);
-      controllers = [
-        ...options.grantsEndpoint ? [GrantsController] : [],
-      ];
+      controllers = [...(options.grantsEndpoint ? [GrantsController] : [])];
     }
 
     return {
       imports: [...(options.imports || [])],
-      controllers: [
-        ...controllers,
-      ],
+      controllers: [...controllers],
       module: AccessControlModule,
       providers: [provider],
       exports: [provider],
