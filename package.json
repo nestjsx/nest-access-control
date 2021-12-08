@@ -26,9 +26,10 @@
   "author": "Shady Khalifa <shekohex@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@nestjs/common": "^6.0.1",
-    "@nestjs/core": "^6.0.1",
-    "@nestjs/testing": "^6.1.1",
+    "@nestjs/common": "^7.6.18",
+    "@nestjs/core": "^7.6.18",
+    "@nestjs/graphql": "^7.9.1",
+    "@nestjs/testing": "^7.6.18",
     "@types/jest": "^24.0.12",
     "@types/node": "^10.1.2",
     "coveralls": "^3.0.1",
