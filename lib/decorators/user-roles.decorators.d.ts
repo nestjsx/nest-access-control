@@ -2,6 +2,6 @@
  * Access the user roles from the request object i.e `req.user.roles`.
  *
  * You can pass an optional property key to the decorator to get it from the user object
- * e.g `@UserRoles('permissions')` will return the `req.user.permissions` instead.
+ * e.g `@UserRoles('premissions')` will return the `req.user.premissions` instead.
  */
-export declare const UserRoles: (...dataOrPipes: (string | import("@nestjs/common").PipeTransform<any, any> | import("@nestjs/common").Type<import("@nestjs/common").PipeTransform<any, any>>)[]) => ParameterDecorator;
+export declare const UserRoles: (...dataOrPipes: any[]) => ParameterDecorator;
