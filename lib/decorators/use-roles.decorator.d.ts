@@ -1,6 +1,6 @@
 import { Role } from '../role.interface';
 /**
  * Define an access information required for this route.
- * Notic that all Roles must be satisfied/Passed
+ * Notice that all Roles must be satisfied/passed
  */
-export declare const UseRoles: (...roles: Role[]) => (target: object, key?: any, descriptor?: any) => any;
+export declare const UseRoles: (...roles: Role[]) => import("@nestjs/common").CustomDecorator<string>;
