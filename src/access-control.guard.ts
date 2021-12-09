@@ -20,7 +20,7 @@ export class ACGuard<User extends any = any> implements CanActivate {
   protected async getUserRoles(context: ExecutionContext): Promise<string | string[]> {
     const user = await this.getUser(context);
     if (!user) throw new UnauthorizedException();
-    return user.roles;
+    return user['roles'];
   }
 
   public async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -30,7 +30,7 @@ export class ACGuard<User extends any = any> implements CanActivate {
     }
 
     const userRoles = await this.getUserRoles(context);
-    const hasRoles = roles.every(role => {
+    const hasRoles = roles.every((role) => {
       const queryInfo: IQueryInfo = role;
       queryInfo.role = userRoles;
       const permission = this.roleBuilder.permission(queryInfo);

@@ -14,6 +14,6 @@ gulp.task('build', () => {
     .pipe(gulp.dest(dist));
 });
 
-gulp.task('move', function() {
-  gulp.src(['node_modules/nest-access-control/**/*']).pipe(gulp.dest('example/node_modules/nest-access-control'));
+gulp.task('move', () => {
+  return gulp.src(['node_modules/nest-access-control/**/*']).pipe(gulp.dest('example/node_modules/nest-access-control'));
 });
