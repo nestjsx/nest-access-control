@@ -1,6 +1,6 @@
 {
   "name": "nest-access-control",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Access Control Module For Nestjs Framework",
   "main": "index.js",
   "scripts": {
@@ -28,12 +28,10 @@
   "devDependencies": {
     "@nestjs/common": "^7.6.18",
     "@nestjs/core": "^7.6.18",
-    "@nestjs/graphql": "^7.6.18",
     "@nestjs/testing": "^7.6.18",
     "@types/jest": "^27.0.0",
     "@types/node": "^10.1.2",
     "coveralls": "^3.0.1",
-    "graphql": "15.0.0",
     "gulp": "^4.0.0",
     "gulp-sequence": "^1.0.0",
     "gulp-typescript": "^5.0.1",
@@ -51,5 +49,12 @@
   "homepage": "https://github.com/nestjsx/nest-access-control#readme",
   "dependencies": {
     "accesscontrol": "^2.2.1"
+  },
+  "peerDependencies": {
+    "@apollo/gateway": "^0.45.1",
+    "@nestjs/graphql": "^7.6.18",
+    "apollo-server-core": "^3.6.1",
+    "graphql": "15.0.0",
+    "ts-morph": "^13.0.2"
   }
 }
