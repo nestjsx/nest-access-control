@@ -28,12 +28,10 @@
   "devDependencies": {
     "@nestjs/common": "^7.6.18",
     "@nestjs/core": "^7.6.18",
-    "@nestjs/graphql": "^9.1.2",
     "@nestjs/testing": "^7.6.18",
     "@types/jest": "^27.0.0",
     "@types/node": "^10.1.2",
     "coveralls": "^3.0.1",
-    "graphql": "15.0.0",
     "gulp": "^4.0.0",
     "gulp-sequence": "^1.0.0",
     "gulp-typescript": "^5.0.1",
@@ -53,6 +51,10 @@
     "accesscontrol": "^2.2.1"
   },
   "peerDependencies": {
-    "@nestjs/graphql": "^9.1.2"
+    "graphql": "15.0.0",
+    "@apollo/gateway": "^0.45.1",
+    "@nestjs/graphql": "^7.6.18",
+    "apollo-server-core": "^3.6.1",
+    "ts-morph": "^13.0.2"
   }
 }

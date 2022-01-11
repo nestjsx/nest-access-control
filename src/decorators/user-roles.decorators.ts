@@ -1,5 +1,4 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
 import { Role } from '..';
 
 function userFactory<T>(ctx: ExecutionContext): T {
@@ -14,7 +13,9 @@ function userFactory<T>(ctx: ExecutionContext): T {
   } else if (contextType === 'ws') {
     // do something that is only important in the context of Websockets requests
     throw new Error('Websockets context is not implemented yet');
-  } else if (ctx.getType<GqlContextType>() === 'graphql') {
+  } else if (contextType === 'graphql') {
+    // inline require here, since we don't want to require the graphql module in the pacakge.
+    const { GqlExecutionContext } = require('@nestjs/graphql');
     // do something that is only important in the context of GraphQL requests
     const gqlExecutionContext = GqlExecutionContext.create(ctx);
     return gqlExecutionContext.getContext().req.user;
