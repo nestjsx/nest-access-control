@@ -28,10 +28,14 @@ function userFactory<T>(ctx: ExecutionContext): T {
  *
  * You can pass an optional property key to the decorator to get it from the user object
  * e.g `@UserRoles('permissions')` will return the `req.user.permissions` instead.
+ * In case that the request is missing User object the function will return null
  */
-export const UserRoles = createParamDecorator<string, ExecutionContext, (Role | string)[]>(
-  (data: string, ctx: ExecutionContext) => {
-    const user = userFactory<any>(ctx);
-    return data ? user[data] : user.roles;
-  },
-);
+export const UserRoles = createParamDecorator<
+  string | undefined,
+  ExecutionContext,
+  (Role | string)[] | null
+>((propertyKey: undefined | string, ctx: ExecutionContext) => {
+  const user = userFactory<any>(ctx);
+  if (!user) return null;
+  return propertyKey ? user[propertyKey] : user.roles;
+});
