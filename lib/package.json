@@ -51,10 +51,10 @@
     "accesscontrol": "^2.2.1"
   },
   "peerDependencies": {
+    "graphql": "15.0.0",
     "@apollo/gateway": "^0.45.1",
     "@nestjs/graphql": "^7.6.18",
     "apollo-server-core": "^3.6.1",
-    "graphql": "15.0.0",
     "ts-morph": "^13.0.2"
   }
 }
