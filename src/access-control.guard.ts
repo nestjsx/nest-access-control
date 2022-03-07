@@ -4,7 +4,6 @@ import { IQueryInfo } from 'accesscontrol';
 import { Role } from './role.interface';
 import { InjectRolesBuilder } from './decorators/inject-roles-builder.decorator';
 import { RolesBuilder } from './roles-builder.class';
-
 @Injectable()
 export class ACGuard<User extends any = any> implements CanActivate {
   constructor(
@@ -13,8 +12,16 @@ export class ACGuard<User extends any = any> implements CanActivate {
   ) {}
 
   protected async getUser(context: ExecutionContext): Promise<User> {
-    const request = context.switchToHttp().getRequest();
-    return request.user;
+    const contextType = context.getType().toString();
+    switch (contextType) {
+      case 'http':
+        return context.switchToHttp().getRequest().user;
+      case 'graphql':
+        const { GqlExecutionContext } = require('@nestjs/graphql');
+        return GqlExecutionContext.create(context).getContext().req.user;
+      default:
+        throw new Error(`Unsupported context type: ${contextType}`);
+    }
   }
 
   protected async getUserRoles(context: ExecutionContext): Promise<string | string[]> {
