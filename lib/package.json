@@ -1,6 +1,6 @@
 {
   "name": "nest-access-control",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Access Control Module For Nestjs Framework",
   "main": "index.js",
   "scripts": {
@@ -51,7 +51,7 @@
     "accesscontrol": "^2.2.1"
   },
   "peerDependencies": {
-    "@nestjs/graphql": "^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0"
+    "@nestjs/graphql": "^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
   },
   "peerDependenciesMeta": {
     "@nestjs/graphql": {

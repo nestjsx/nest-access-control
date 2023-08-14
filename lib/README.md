@@ -97,11 +97,10 @@ We need to build a Video service so users can share there videos with others, bu
       providers: [AppService],
     })
     export class AppModule {}
-    ```
-
-    Until now everything is fine, but let's make our application,
-    assume that we have list of video names, user can - _according to our roles_ - `create:own` new video, and `read:any` video, so let's build it:
 ```
+
+Until now everything is fine, but let's make our application,
+assume that we have list of video names, user can - _according to our roles_ - `create:own` new video, and `read:any` video, so let's build it:
 
 ```ts
     // app.controller.ts
