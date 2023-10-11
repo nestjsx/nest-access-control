@@ -1,6 +1,6 @@
 {
   "name": "nest-access-control",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Access Control Module For Nestjs Framework",
   "main": "index.js",
   "scripts": {
@@ -48,7 +48,8 @@
   },
   "homepage": "https://github.com/nestjsx/nest-access-control#readme",
   "dependencies": {
-    "accesscontrol": "^2.2.1"
+    "accesscontrol": "^2.2.1",
+    "tslib": "^2.6.2"
   },
   "peerDependencies": {
     "@nestjs/graphql": "^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
