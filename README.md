@@ -164,7 +164,7 @@ So let's discuss what's going on!
 First we introduced two new decorators, actually they are three, but let's see what they can do:
 
 - `@UseRoles({ ... })`: this the most used decorator, it define what roles should user have to access this route.
-  It may take one or more role, but keep in mind that all roles **must** be satisfied.
+  Apply it to a controller to require permissions on every handler, or to a handler to add requirements for that route. When both are present, all requirements **must** be satisfied; handler metadata does not override the controller.
   The structure of the role is really simple, for example, here we define what resources we have, and the **ACGuard\*** - _Damn, it's a good name for a guard :joy:_ - will check for the user roles, then if the user roles have the permissions to access this resource the guard will return `true`, else it will throw a `ForbiddenException`.
   For more information about the structure of roles see `roles.interface.ts` file or read the original [documentation](https://onury.io/accesscontrol/) form `accesscontrol` library [here](https://onury.io/accesscontrol/?api=ac#AccessControl~IQueryInfo).
   > \*note: for those who are asking what ACGuard stands for, it of course stands for Access Control Guard :smile:

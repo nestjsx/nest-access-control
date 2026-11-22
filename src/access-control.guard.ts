@@ -31,18 +31,17 @@ export class ACGuard<User extends any = any> implements CanActivate {
   }
 
   public async canActivate(context: ExecutionContext): Promise<boolean> {
-    const roles = this.reflector.get<Role[]>('roles', context.getHandler());
-    if (!roles) {
+    const controllerRoles = this.reflector.get<Role[]>('roles', context.getClass());
+    const handlerRoles = this.reflector.get<Role[]>('roles', context.getHandler());
+    if (!controllerRoles && !handlerRoles) {
       return true;
     }
 
     const userRoles = await this.getUserRoles(context);
-    const hasRoles = roles.every((role) => {
-      const queryInfo: IQueryInfo = role;
-      queryInfo.role = userRoles;
+    return [...(controllerRoles || []), ...(handlerRoles || [])].every((role) => {
+      const queryInfo: IQueryInfo = { ...role, role: userRoles };
       const permission = this.roleBuilder.permission(queryInfo);
       return permission.granted;
     });
-    return hasRoles;
   }
 }
